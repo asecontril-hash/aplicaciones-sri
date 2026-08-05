@@ -1,5 +1,26 @@
 import io
 import os
+import subprocess
+import sys
+
+# Forzar instalación automática de dependencias si faltan
+try:
+  import reportlab
+  import openpyxl
+  import pypdf
+except ImportError:
+  subprocess.check_call([
+      sys.executable,
+      "-m",
+      "pip",
+      "install",
+      "streamlit==1.32.0",
+      "pandas==2.2.1",
+      "openpyxl==3.1.2",
+      "reportlab==4.1.0",
+      "pypdf==4.1.0",
+  ])
+
 import xml.etree.ElementTree as ET
 import pandas as pd
 import streamlit as st
